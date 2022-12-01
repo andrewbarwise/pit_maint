@@ -3,9 +3,10 @@ import pandas as pd
 from src.data_cleanse import data
 from PIL import Image
 from datetime import date
+import os
 
 st.session_state.df = data("C:\data\pit_maint\data\pit_location.xlsx")
-st.session_state.service_update_df = data("C:\data\pit_maint\data\service_update.csv")
+st.session_state.service_update_df = pd.read_csv("C:\data\pit_maint\data\service_update.csv")
 
 # file that will hold data captured 
 
@@ -51,3 +52,16 @@ if st.button('Update'):
         'Lid Level' : level, 'Lid Intact' : pit_lid, 'Collar Intact' : collar, 'Lid Locked' : lock, 'Pit Labelled' : label, \
             'PitLok' : pitlok, 'Comments' : comments}]
     st.session_state.service_update_df = st.session_state.service_update_df.append(new_entry)
+
+    if not os.path.exists(f'data\photos\{pits}'):
+        os.makedirs(f'data\photos\{pits}')
+
+    image.save(f'data\photos\{pits}\{today}.jpg')
+
+    try:
+        st.session_state.service_update_df.to_csv("C:\data\pit_maint\data\service_update.csv", index = False)
+
+    except PermissionError:
+        st.caption("Please close the file and then reclick the Update button. ")
+
+    st.caption("Data has been uploaded")

@@ -7,8 +7,6 @@ st.session_state.df = data("C:\data\pit_maint\data\pit_location.xlsx")
 
 st.title("Pit Inspections")
 
-st.session_state.df = data("C:\data\pit_maint\data\pit_location.xlsx")
-
 pit_id = st.session_state.df['Fomat PIT'].values.tolist()
 
 pits = st.selectbox("Pit ID",pit_id)
