@@ -2,8 +2,12 @@ import streamlit as st
 import pandas as pd
 from src.data_cleanse import data
 from PIL import Image
+from datetime import date
 
 st.session_state.df = data("C:\data\pit_maint\data\pit_location.xlsx")
+st.session_state.service_update_df = data("C:\data\pit_maint\data\service_update.csv")
+
+# file that will hold data captured 
 
 pit_id = st.session_state.df['Fomat PIT'].values.tolist()
 
@@ -26,6 +30,9 @@ st.header("Pit labelling")
 label = st.selectbox("Is the pit labelled as Western Power", ["Yes", "No"])
 pitlok = st.selectbox("Does the PITLOK pit enclosure collar have pit ID tag affixed", ['Yes', 'No'])
 
+st.header("Additional Comments")
+comments = st.text_input("Please add any additional comments.")
+
 st.header("Upload Photo")
 photo = st.file_uploader('Upload an image', type=["jpg", "jpeg","jfif"])
 
@@ -33,7 +40,14 @@ if photo is not None:
     image = Image.open(photo)
     st.image(image, caption='Uploaded image.', use_column_width=True)
     st.write("")
-    st.write("Uploading...")
-
-
+    
 # ADD A SUBMIT BUTTON
+if st.button('Update'):
+    # get current date
+    today = date.today()
+    date_updated = today.strftime("%d/%m/%Y")
+    
+    new_entry = [{'Pit Id' : pits, 'Date' : today, 'Address' : location, 'Accessible' : access, 'Debris Free' : debris, \
+        'Lid Level' : level, 'Lid Intact' : pit_lid, 'Collar Intact' : collar, 'Lid Locked' : lock, 'Pit Labelled' : label, \
+            'PitLok' : pitlok, 'Comments' : comments}]
+    st.session_state.service_update_df = st.session_state.service_update_df.append(new_entry)

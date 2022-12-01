@@ -1,0 +1,1 @@
+Pit Id	Date	Address	Accessible	Debris Free	Lid Level	Lid Intact	Collar Intact	Lid Locked	Pit Labelled	PitLok	Comments
