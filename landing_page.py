@@ -15,4 +15,8 @@ if st.button('Select'):
     selected_pit = st.session_state.df[st.session_state.df['Fomat PIT'] == pits]
     st.dataframe(selected_pit)
 
-st.map(selected_pit[["latitude", "longitude"]], zoom= 10, use_container_width=True)
+try:
+    st.map(selected_pit[["latitude", "longitude"]], zoom= 10, use_container_width=True)
+
+except NameError:
+    st.write(" ")
