@@ -55,9 +55,9 @@ if file_image is not None:
     st.image(image, caption='Uploaded image.', use_column_width=True)
     st.write("")
 
-file_image_submit = st.button("Upload Image")
+file_image_submit = st.button("Upload Image from file")
 
-if file_image_submit is not None:
+if file_image_submit:
     if not os.path.exists(f'data\photos\{pits}'):
         os.makedirs(f'data\photos\{pits}')
 
@@ -71,6 +71,9 @@ if camera_image is not None:
     st.image(img, caption='Uploaded image.', use_column_width=True)
     st.write("")
 
+photo_image_submit = st.button("Upload photo from camera")
+
+if photo_image_submit:
     if not os.path.exists(f'data\photos\{pits}'):
         os.makedirs(f'data\photos\{pits}')
 
