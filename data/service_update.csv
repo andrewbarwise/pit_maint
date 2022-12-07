@@ -1,10 +1,13 @@
 Pit Id,Date,Address,Accessible,Debris Free,Lid Level,Lid Intact,Collar Intact,Lid Locked,Pit Labelled,PitLok,Comments
 PIT0003,1/12/2022,Update Details - Pit located but address/ GPS details can be improved,No,Yes,Yes,Minor Damage,Yes,No,No,Yes,Maintenance is needed
-PIT0001,2022-12-01,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,
-PIT0120,2022-12-01,Yes,Yes,No,Yes,Yes,Yes,No,Yes,Yes,Pit needs a new lock
-PIT0216,2022-12-02,Update Details - Pit located but address/ GPS details can be improved,No,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Phils demo
-PIT2991,2022-12-02,No,No,No,Yes,Minor Damage,Yes,No,No,Yes,testing out the new form
-PIT1008,2022-12-02,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Andrew test photo upload
-PIT0007,2022-12-02,Update Details - Pit located but address/ GPS details can be improved,No,Yes,No,Yes,Yes,No,Yes,Yes,Darko example
-PIT1999,2022-12-02,Update Details - Pit located but address/ GPS details can be improved,Yes,No,Yes,Damaged/ Unserviceable,Yes,Yes,Yes,Yes,
-PIT2497,2022-12-07,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,test
+PIT0001,1/12/2022,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,
+PIT0120,1/12/2022,Yes,Yes,No,Yes,Yes,Yes,No,Yes,Yes,Pit needs a new lock
+PIT0216,2/12/2022,Update Details - Pit located but address/ GPS details can be improved,No,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Phils demo
+PIT2991,2/12/2022,No,No,No,Yes,Minor Damage,Yes,No,No,Yes,testing out the new form
+PIT1008,2/12/2022,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Andrew test photo upload
+PIT0007,2/12/2022,Update Details - Pit located but address/ GPS details can be improved,No,Yes,No,Yes,Yes,No,Yes,Yes,Darko example
+PIT1999,2/12/2022,Update Details - Pit located but address/ GPS details can be improved,Yes,No,Yes,Damaged/ Unserviceable,Yes,Yes,Yes,Yes,
+PIT2497,7/12/2022,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,test
+PIT2111,7/12/2022,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Camera test
+PIT0054,2022-12-07,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,test file and camera upload
+PIT0052,2022-12-07,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,added camera into form

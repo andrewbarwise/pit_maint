@@ -31,13 +31,26 @@ with st.form("Form inputs", clear_on_submit=True):
 
     comments = st.text_input("Please add any additional comments.")
 
+    camera_image = st.camera_input("Take a picture")
+
     submitted = st.form_submit_button("Submit")
+
+    if camera_image is not None:
+        img = Image.open(camera_image)
+        st.image(img, caption='Uploaded image.', use_column_width=True)
+        st.write("")
 
     if submitted:    
         new_entry = [{'Pit Id' : pits, 'Date' : today, 'Address' : location, 'Accessible' : access, 'Debris Free' : debris, \
             'Lid Level' : level, 'Lid Intact' : pit_lid, 'Collar Intact' : collar, 'Lid Locked' : lock, 'Pit Labelled' : label, \
                 'PitLok' : pitlok, 'Comments' : comments}]
         st.session_state.service_update_df = st.session_state.service_update_df.append(new_entry)
+
+        
+        if not os.path.exists(f'data\photos\{pits}'):
+            os.makedirs(f'data\photos\{pits}')
+
+        img.save(f'data\photos\{pits}\{today}.jpg')
 
         try:
             st.session_state.service_update_df.to_csv("C:\data\pit_maint\data\service_update.csv", index = False)
@@ -46,35 +59,3 @@ with st.form("Form inputs", clear_on_submit=True):
         except PermissionError:
             st.caption("Please close the file and then reclick the Update button. ")
 
-# CREATE FUNCTIONALITY TO UPLOAD PHOTOS
-# file upload 
-file_image = st.file_uploader('Upload an image', type=["jpg", "jpeg","jfif"])
-    
-if file_image is not None:
-    image = Image.open(file_image)
-    st.image(image, caption='Uploaded image.', use_column_width=True)
-    st.write("")
-
-file_image_submit = st.button("Upload Image from file")
-
-if file_image_submit:
-    if not os.path.exists(f'data\photos\{pits}'):
-        os.makedirs(f'data\photos\{pits}')
-
-    image.save(f'data\photos\{pits}\{today}.jpg')
-
-# UPLOAD FROM CAMERA
-camera_image = st.camera_input("Take a picture")
-
-if camera_image is not None:
-    img = Image.open(camera_image)
-    st.image(img, caption='Uploaded image.', use_column_width=True)
-    st.write("")
-
-photo_image_submit = st.button("Upload photo from camera")
-
-if photo_image_submit:
-    if not os.path.exists(f'data\photos\{pits}'):
-        os.makedirs(f'data\photos\{pits}')
-
-    image.save(f'data\photos\{pits}\{today}.jpg')
