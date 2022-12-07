@@ -48,13 +48,16 @@ with st.form("Form inputs", clear_on_submit=True):
 
 # CREATE FUNCTIONALITY TO UPLOAD PHOTOS
 # file upload 
-file_image = st.file_uploader('Upload an image', type=["jpg", "jpeg","jfif"], accept_multiple_files= True)
+file_image = st.file_uploader('Upload an image', type=["jpg", "jpeg","jfif"])
     
 if file_image is not None:
     image = Image.open(file_image)
     st.image(image, caption='Uploaded image.', use_column_width=True)
     st.write("")
 
+file_image_submit = st.button("Upload Image")
+
+if file_image_submit is not None:
     if not os.path.exists(f'data\photos\{pits}'):
         os.makedirs(f'data\photos\{pits}')
 
@@ -65,7 +68,7 @@ camera_image = st.camera_input("Take a picture")
 
 if camera_image is not None:
     img = Image.open(camera_image)
-    st.image(image, caption='Uploaded image.', use_column_width=True)
+    st.image(img, caption='Uploaded image.', use_column_width=True)
     st.write("")
 
     if not os.path.exists(f'data\photos\{pits}'):
