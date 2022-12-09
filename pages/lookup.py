@@ -16,10 +16,27 @@ date_updated = today.strftime("%d/%m/%Y")
 
 pits = st.selectbox("Pit ID",pit_id)
 
+
 if st.button("Select"):
-    # put a if statement to catch empty folder and return message
+    selected_pit_location = st.session_state.df[st.session_state.df['Fomat PIT'] == pits]
+    selected_pit_history = st.session_state.service_update_df[st.session_state.service_update_df['Pit Id'] == pits]
+    
+    # address details
+    st.header("Location")
+    st.dataframe(selected_pit_location)
+
+    # service history
+    st.header("Service History")
+    st.dataframe(selected_pit_history)
+
+    st.header("Photos")
+    try:
         folder_dir = f"C:\data\pit_maint\data\photos\{pits}"
         for images in os.listdir(folder_dir):
             img = Image.open(f"C:\data\pit_maint\data\photos\{pits}\{images}")
             st.image(img)
 
+    except FileNotFoundError:
+        st.write("This pit has no photos on file.")
+
+    
