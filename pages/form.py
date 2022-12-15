@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 from src.data_cleanse import data
 from PIL import Image
-from datetime import date
+from datetime import date, datetime
 import os
 
 st.session_state.df = data("C:\data\pit_maint\data\pit_location.xlsx")
@@ -11,7 +11,7 @@ st.session_state.service_update_df = pd.read_csv("C:\data\pit_maint\data\service
 pit_id = st.session_state.df['Fomat PIT'].values.tolist()
 # get current date
 today = date.today()
-date_updated = today.strftime("%d/%m/%Y")
+date_updated = today.strftime("%d-%m-%Y")
 
 with st.form("Form inputs", clear_on_submit=True):
     pits = st.selectbox("Pit ID",pit_id)
@@ -35,23 +35,25 @@ with st.form("Form inputs", clear_on_submit=True):
 
     submitted = st.form_submit_button("Submit")
 
+    image_counter = 0
+
     if camera_image is not None:
         img = Image.open(camera_image)
         st.image(img, caption='Uploaded image.', use_column_width=True)
         st.write("")
 
     if submitted:    
-        new_entry = [{'Pit Id' : pits, 'Date' : today, 'Address' : location, 'Accessible' : access, 'Debris Free' : debris, \
+        new_entry = [{'Pit Id' : pits, 'Date' : date_updated, 'Address' : location, 'Accessible' : access, 'Debris Free' : debris, \
             'Lid Level' : level, 'Lid Intact' : pit_lid, 'Collar Intact' : collar, 'Lid Locked' : lock, 'Pit Labelled' : label, \
                 'PitLok' : pitlok, 'Comments' : comments}]
         st.session_state.service_update_df = st.session_state.service_update_df.append(new_entry)
 
-        
+        image_counter += 1
         if not os.path.exists(f'data\photos\{pits}'):
             os.makedirs(f'data\photos\{pits}')
 
-        img.save(f'data\photos\{pits}\{today}.jpg')
-
+        #img.save(f'data\photos\{pits}\{date_updated}.jpg')
+        img.save(f'data\photos\{pits}\{date_updated + str(image_counter)}.jpg')
         try:
             st.session_state.service_update_df.to_csv("C:\data\pit_maint\data\service_update.csv", index = False)
             st.caption("Data has been uploaded")

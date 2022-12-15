@@ -25,6 +25,8 @@ if st.button("Select"):
     st.header("Location")
     st.dataframe(selected_pit_location)
 
+    st.map(selected_pit_location[["latitude", "longitude"]], zoom= 10, use_container_width=True)
+
     # service history
     st.header("Service History")
     st.dataframe(selected_pit_history)
