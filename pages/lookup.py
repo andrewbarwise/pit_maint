@@ -34,6 +34,7 @@ if st.button("Select"):
         folder_dir = f"C:\data\pit_maint\data\photos\{pits}"
         for images in os.listdir(folder_dir):
             img = Image.open(f"C:\data\pit_maint\data\photos\{pits}\{images}")
+            st.write(images)
             st.image(img)
 
     except FileNotFoundError:
